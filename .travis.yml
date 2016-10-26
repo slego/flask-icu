@@ -3,7 +3,10 @@ sudo: required
 dist: trusty
 language: python
 
-language: python
+env:
+  global:
+    - LANG="en_US.UTF-8"
+    - LC_ALL="en_US.UTF-8"
 
 python:
   - "3.3"
