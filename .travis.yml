@@ -10,7 +10,6 @@ python:
   - "3.5"
 
 before_install:
-  - bash .infrastructure/set_locales.sh
   - bash .infrastructure/install_icu.sh
 
 install:
