@@ -19,7 +19,7 @@ from setuptools import setup
 
 setup(
     name='Flask-ICU',
-    version='0.9',
+    version='0.9.1',
     url='https://github.com/beavyHQ/flask-icu',
     license='BSD',
     author='Ethan Miller',
