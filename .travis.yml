@@ -8,8 +8,10 @@ python:
   - "3.5"
 
 before_install:
+  - locale -a
+  - sudo locale-gen "en_US"
   - sudo locale-gen "en_US.UTF-8"
-  - sudo dpkg-reconfigure locales
+  - sudo update-locale
   - locale | cat -
   - bash .infrastructure/install_icu.sh
 
