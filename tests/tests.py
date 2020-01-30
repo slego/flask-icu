@@ -173,6 +173,53 @@ class MessageFormattingTestCases(unittest.TestCase):
                 =0 {no apples} \
                 one {one apple} \
                 other {# apples}}.", {'numApples': 3}) == 'I have 3 apples.'
+    
+    def test_icu_plural_ru(self):
+        app = flask.Flask(__name__)
+        icu = ICU(app, default_locale='ru')
+
+        with app.test_request_context():
+            assert format("I have {numApples, plural, \
+                =0 {no apples} \
+                one {one apple} \
+                other {# apples}}.", {'numApples': 0}) == 'У меня нет яблок.'
+            assert format("I have {numApples, plural, \
+                =0 {no apples} \
+                one {one apple} \
+                other {# apples}}.", {'numApples': 1}) == 'У меня одно яблоко.'
+            assert format("I have {numApples, plural, \
+                =0 {no apples} \
+                one {one apple} \
+                other {# apples}}.", {'numApples': 2}) == 'У меня 2 яблока.'
+            assert format("I have {numApples, plural, \
+                =0 {no apples} \
+                one {one apple} \
+                other {# apples}}.", {'numApples': 3}) == 'У меня 3 яблока.' 
+            assert format("I have {numApples, plural, \
+                =0 {no apples} \
+                one {one apple} \
+                other {# apples}}.", {'numApples': 4}) == 'У меня 4 яблока.'
+            assert format("I have {numApples, plural, \
+                =0 {no apples} \
+                one {one apple} \
+                other {# apples}}.", {'numApples': 5}) == 'У меня 5 яблок.'
+            assert format("I have {numApples, plural, \
+                =0 {no apples} \
+                one {one apple} \
+                other {# apples}}.", {'numApples': 10}) == 'У меня 10 яблок.'
+            assert format("I have {numApples, plural, \
+                =0 {no apples} \
+                one {one apple} \
+                other {# apples}}.", {'numApples': 11}) == 'У меня 11 яблок.'
+            assert format("I have {numApples, plural, \
+                =0 {no apples} \
+                one {one apple} \
+                other {# apples}}.", {'numApples': 20}) == 'У меня 20 яблок.'
+            assert format("I have {numApples, plural, \
+                =0 {no apples} \
+                one {one apple} \
+                other {# apples}}.", {'numApples': 21}) == 'У меня 21 яблоко.'
+            
 
 
         with app.test_request_context():
@@ -227,8 +274,8 @@ class MessageFormattingTestCases(unittest.TestCase):
         app = flask.Flask(__name__)
         icu = ICU(app, default_locale='de')
         translations = icu.list_translations()
-        assert len(translations) == 2
-        assert ('en' in translations and 'de' in translations)
+        assert len(translations) == 3
+        assert ('en' in translations and 'de' in translations and 'ru' in translations)
 
 
 if __name__ == '__main__':
