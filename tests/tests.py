@@ -222,6 +222,10 @@ class MessageFormattingTestCases(unittest.TestCase):
             
 
 
+    def test_icu_plural_de(self):
+        app = flask.Flask(__name__)
+        icu = ICU(app, default_locale='de')
+
         with app.test_request_context():
             app.config['ICU_DEFAULT_LOCALE'] = 'de'
             icu_refresh()
@@ -238,6 +242,8 @@ class MessageFormattingTestCases(unittest.TestCase):
                 =0 {no apples} \
                 one {one apple} \
                 other {# apples}}.", {'numApples': 3}) == 'Ich habe 3 Äpfeln.'
+
+
 
     def test_icu_select(self):
         app = flask.Flask(__name__)
