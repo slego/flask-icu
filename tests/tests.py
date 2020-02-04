@@ -219,7 +219,6 @@ class MessageFormattingTestCases(unittest.TestCase):
                 =0 {no apples} \
                 one {one apple} \
                 other {# apples}}.", {'numApples': 21}) == 'У меня 21 яблоко.'
-            
 
 
     def test_icu_plural_de(self):
