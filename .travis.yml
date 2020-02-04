@@ -1,13 +1,11 @@
 # enable linux 14.04 environment
 sudo: required
-dist: trusty
-language: python
-
+dist: xenial
 language: python
 
 python:
-  - "3.3"
   - "3.5"
+  - "3.7"
 
 before_install:
   - bash .infrastructure/install_icu.sh
